@@ -203,19 +203,19 @@
     }
   ],
   "theory": {
-    "explanation": "Future Perfect – czas przyszły doskonały\n\nBudowa: will have + past participle (3. forma czasownika)\nSkrót: I'll have, she'll have...\n\nKiedy używamy:\nOpisujemy czynność, która zostanie zakończona PRZED określonym momentem w przyszłości.\n\nTypowe wyrażenia czasu:\n  by next year, by the time, by 2030, by Friday, before the meeting\n\nFormy:\n  Twierdzące:  podmiot + will have + pp\n  Przeczące:   podmiot + won't have + pp\n  Pytania:     Will + podmiot + have + pp?",
+    "explanation": "Future Perfect tense\n\nForm: will have + past participle (3rd form of the verb)\nShort forms: I'll have, she'll have...\n\nWhen we use it:\nWe describe an action that will be completed BEFORE a particular moment in the future.\n\nTypical time expressions:\n  by next year, by the time, by 2030, by Friday, before the meeting\n\nPatterns:\n  Affirmative: subject + will have + pp\n  Negative:    subject + won't have + pp\n  Questions:   Will + subject + have + pp?",
     "examples": [
       {
         "sentence": "She will have completed all her training by next month.",
-        "explanation": "Twierdzące: will have + completed. By next month = przed przyszłym miesiącem."
+        "explanation": "Affirmative: will have + completed. By next month = before next month."
       },
       {
         "sentence": "I won't have submitted my application before the deadline.",
-        "explanation": "Przeczące: won't have + submitted. Czynność nie zostanie wykonana na czas."
+        "explanation": "Negative: won't have + submitted. The action will not be done on time."
       },
       {
         "sentence": "Will they have left by the time we arrive?",
-        "explanation": "Pytanie: Will + they + have + left? Czy odejdą zanim my przyjedziemy?"
+        "explanation": "Question: Will + they + have + left? Will they leave before we arrive?"
       }
     ]
   }

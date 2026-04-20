@@ -203,19 +203,19 @@
     }
   ],
   "theory": {
-    "explanation": "Nieregularne formy Past Participle – część IV\n\nWażna grupa: czasowniki niezmienne (wszystkie formy takie same):\n  cut   → cut   → cut      put  → put  → put\n  let   → let   → let      set  → set  → set\n  hit   → hit   → hit      hurt → hurt → hurt\n  spread → spread → spread  read → read → read*\n  (*read wymawia się /red/ w past simple i past participle)\n\nPozostałe z tej części:\n  deal  → dealt    sweep → swept    creep → crept\n  grow  → grown    draw  → drawn    rise  → risen\n  show  → shown    shake → shaken   stand → stood\n  meet  → met      sit   → sat      lead  → led",
+    "explanation": "Irregular Past Participle forms – Part IV\n\nImportant group: unchanged verbs (all three forms the same):\n  cut   → cut   → cut      put  → put  → put\n  let   → let   → let      set  → set  → set\n  hit   → hit   → hit      hurt → hurt → hurt\n  spread → spread → spread  read → read → read*\n  (*read is pronounced /red/ in past simple and past participle)\n\nAlso in this set:\n  deal  → dealt    sweep → swept    creep → crept\n  grow  → grown    draw  → drawn    rise  → risen\n  show  → shown    shake → shaken   stand → stood\n  meet  → met      sit   → sat      lead  → led",
     "examples": [
       {
         "sentence": "She has set a new world record!",
-        "explanation": "set → set → set. Wszystkie trzy formy identyczne – uważaj, żeby nie dodać -ed!"
+        "explanation": "set → set → set. All three forms identical — don't add -ed!"
       },
       {
         "sentence": "Have you ever met a celebrity?",
-        "explanation": "meet → met → met. Past simple = past participle = met (nie: 'meeted')."
+        "explanation": "meet → met → met. Past simple = past participle = met (not 'meeted')."
       },
       {
         "sentence": "Temperatures have risen significantly.",
-        "explanation": "rise → rose → risen (3 różne formy). Nie mylić z raised (= podnosić coś)."
+        "explanation": "rise → rose → risen (three different forms). Don't confuse with raised (= to lift something)."
       }
     ]
   }

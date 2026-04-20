@@ -203,19 +203,19 @@
     }
   ],
   "theory": {
-    "explanation": "Past Perfect – czas przeszły doskonały\n\nBudowa: had + past participle (3. forma czasownika)\nSkrót: I'd, she'd, they'd...\n\nKiedy używamy:\nOpisujemy czynność, która zakończyła się PRZED inną czynnością w przeszłości.\nPast Perfect = \"wcześniejsza przeszłość\"\n\nSłowa kluczowe: before, after, when, by the time, already, just, never\n\nFormy:\n  Twierdzące:  podmiot + had + pp\n  Przeczące:   podmiot + hadn't + pp\n  Pytania:     Had + podmiot + pp?",
+    "explanation": "Past Perfect tense\n\nForm: had + past participle (3rd form of the verb)\nShort forms: I'd, she'd, they'd...\n\nWhen we use it:\nWe describe an action that was completed BEFORE another action in the past.\nPast Perfect = \"earlier past\"\n\nKeywords: before, after, when, by the time, already, just, never\n\nPatterns:\n  Affirmative: subject + had + pp\n  Negative:    subject + hadn't + pp\n  Questions:   Had + subject + pp?",
     "examples": [
       {
         "sentence": "By the time I arrived, she had already left.",
-        "explanation": "Left (Past Perfect) nastąpiło PRZED arrived (Past Simple). Kolejność: najpierw left, potem arrived."
+        "explanation": "Left (Past Perfect) happened BEFORE arrived (Past Simple). Order: first left, then arrived."
       },
       {
         "sentence": "He hadn't seen snow before he moved to Canada.",
-        "explanation": "Przeczące: hadn't + seen. Brak doświadczenia przed określonym momentem w przeszłości."
+        "explanation": "Negative: hadn't + seen. No experience before a given point in the past."
       },
       {
         "sentence": "Had you read the book before the exam?",
-        "explanation": "Pytanie: Had + podmiot + past participle. Czy czynność była zakończona przed innym wydarzeniem?"
+        "explanation": "Question: Had + subject + past participle. Was the action finished before another event?"
       }
     ]
   }

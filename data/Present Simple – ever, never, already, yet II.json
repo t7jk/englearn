@@ -203,19 +203,19 @@
     }
   ],
   "theory": {
-    "explanation": "Przysłówki w Present Perfect: ever, never, already, yet\n\nEVER = kiedykolwiek\n  → w pytaniach, po have/has: \"Have you ever been to Japan?\"\n\nNEVER = nigdy\n  → w zdaniach twierdzących (samo w sobie jest przeczeniem!)\n  → po have/has: \"I have never eaten sushi.\"\n\nALREADY = już (wcześniej niż oczekiwano)\n  → w twierdzeniach, po have/has: \"She has already left.\"\n\nYET = jeszcze nie / już (w pytaniach)\n  → na końcu zdania przeczącego lub pytającego\n  → \"I haven't finished yet.\"  /  \"Has he arrived yet?\"",
+    "explanation": "Adverbs in Present Perfect: ever, never, already, yet\n\nEVER = at any time\n  → in questions, after have/has: \"Have you ever been to Japan?\"\n\nNEVER = not ever\n  → in affirmative sentences (it negates by itself!)\n  → after have/has: \"I have never eaten sushi.\"\n\nALREADY = sooner than expected\n  → in affirmative sentences, after have/has: \"She has already left.\"\n\nYET = not yet / in questions\n  → at the end of a negative or interrogative sentence\n  → \"I haven't finished yet.\"  /  \"Has he arrived yet?\"",
     "examples": [
       {
         "sentence": "She never uses the dishwasher.",
-        "explanation": "NEVER w twierdzeniu z present simple (3. os. l.poj. → uses). Stoi przed czasownikiem głównym."
+        "explanation": "NEVER in an affirmative present simple sentence (3rd person singular → uses). It stands before the main verb."
       },
       {
         "sentence": "They've already booked the hotel.",
-        "explanation": "ALREADY w twierdzeniu Present Perfect. Stoi po have/has, przed past participle."
+        "explanation": "ALREADY in an affirmative Present Perfect sentence. It comes after have/has, before the past participle."
       },
       {
         "sentence": "Have you spoken to your manager yet?",
-        "explanation": "YET w pytaniu Present Perfect. Stoi na końcu zdania."
+        "explanation": "YET in a Present Perfect question. It comes at the end of the sentence."
       }
     ]
   }
