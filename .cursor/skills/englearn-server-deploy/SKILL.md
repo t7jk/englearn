@@ -1,36 +1,38 @@
 ---
 name: englearn-server-deploy
 description: >-
-  Deploys EngLearn from ~/englearn to /var/www/html/englearn by copying only app
-  and lesson data files; never touches profiles on the server. Use when the user
-  asks to deploy EngLearn to the server, publish to /var/www/html/englearn, or
-  run deploy after git pull.
+  Runs repository script deploy.sh to publish EngLearn from ~/englearn to
+  /var/www/html/englearn without overwriting profiles. Use when the user asks
+  to deploy EngLearn to the server, publish to WWW, or sync after git pull—
+  always prefer deploy.sh over ad-hoc copy or rsync.
 ---
 
 # EngLearn — deploy na serwer (WWW)
 
+## Najważniejsze: skrypt `deploy.sh`
+
+W repozytorium jest już skrypt **[`deploy.sh`](../../../deploy.sh)** w katalogu głównym projektu. **To on wykonuje właściwy deploy** — kopiuje tylko to, co trzeba, i **nie dotyka `profiles/`** na serwerze.
+
+**Zasada dla agenta:** nie składać własnej listy `cp` ani `rsync` od zera, jeśli można uruchomić `deploy.sh` (na maszynie, gdzie istnieją ścieżki źródłowa i docelowa). Zmiany w zakresie kopiowanych plików wprowadzaj w **`deploy.sh`**, a potem odpalaj ten skrypt.
+
 ## Cel
 
-Skopiować **tylko niezbędne pliki aplikacji** z katalogu źródłowego na docelowy katalog serwera WWW. **Katalogu `profiles/` nie synchronizować ani nie nadpisywać** — na serwerze zostają konta użytkowników i postępy.
+Skopiować **tylko niezbędne pliki aplikacji** z `~/englearn` do `/var/www/html/englearn`. **Katalogu `profiles/` nie synchronizować ani nie nadpisywać** — na serwerze zostają konta i postępy.
 
-## Ścieżki
+## Ścieżki (domyślne w skrypcie)
 
 | Rola | Ścieżka |
 |------|---------|
-| Źródło | `~/englearn` |
-| Cel (Apache / WWW) | `/var/www/html/englearn` |
+| Źródło (`SRC`) | `~/englearn` |
+| Cel (`DST`) | `/var/www/html/englearn` |
 
-## Co jest kopiowane
+## Co robi `deploy.sh` (skrót)
 
-- `index.php`, `api.php`, `app.js`, `style.css`
-- `data/*.json` (lekcje)
+- Kopiuje: `index.php`, `api.php`, `app.js`, `style.css`, `data/*.json`
+- Ustawia `chmod o+w` na `$DST/profiles/`
+- **Nie kopiuje** `profiles/` z dev — więc dane użytkowników na serwerze pozostają
 
-## Czego **nie** kopiować
-
-- **`profiles/`** — pomijamy całkowicie (brak `cp`/`rsync` profili z dev na produkcję).
-- Reszta repo (np. `docs/`, `.cursor/`, `deploy.sh`, `task.txt`) nie jest wymagana do działania strony — nie trzeba jej kopiować, chyba że użytkownik wyraźnie chce.
-
-## Jak wykonać deploy
+## Wykonanie
 
 Na maszynie, na której **istnieją obie ścieżki** (zwykle serwer po `git pull` w `~/englearn`):
 
@@ -38,13 +40,11 @@ Na maszynie, na której **istnieją obie ścieżki** (zwykle serwer po `git pull
 bash ~/englearn/deploy.sh
 ```
 
-Skrypt jest kanoniczną listą plików: [deploy.sh](../../../deploy.sh) (katalog główny repozytorium `englearn`).
-
 ## Po wdrożeniu
 
-- Upewnij się, że **`/var/www/html/englearn/profiles/`** istnieje i ma prawa zapisu dla procesu WWW (skrypt ustawia `chmod o+w` na ten katalog — dostosuj do polityki serwera jeśli trzeba).
+- Sprawdź, że **`/var/www/html/englearn/profiles/`** istnieje i ma sensowne prawa zapisu dla WWW.
 
 ## Typowe błędy
 
-- Uruchamianie `deploy.sh` **lokalnie na PC**, gdy `DST` nie istnieje — wtedy użyj SSH na serwer i tam odpal skrypt, albo dostosuj `DST` / użyj `rsync` przez SSH według potrzeb.
-- **`rsync --delete`** na cały katalog docelowy — może skasować `profiles/` na serwerze; przy deploy EngLearn **nie** używaj usuwania mirror dla `profiles/`.
+- Odpalanie `deploy.sh` tam, gdzie **nie ma** `/var/www/html/englearn` — użyj SSH na serwer albo zmień `DST` w skrypcie świadomie.
+- **`rsync --delete`** na cały katalog docelowy zamiast `deploy.sh` — ryzyko usunięcia lub nadpisania `profiles/`; **nie** stosuj takiego mirror deploy dla tej aplikacji.

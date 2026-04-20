@@ -1,6 +1,7 @@
 #!/bin/bash
-# Deploy aplikacji EngLearn na katalog WWW.
+# Jedyny zalecany sposób deployu EngLearn na serwer (~/englearn → /var/www/html/englearn).
 # NIE kopiujemy profiles/ — na serwerze zostają konta i postępy użytkowników.
+# Zmiany listy plików — tutaj; agent/ludzie: uruchamiaj ten skrypt zamiast własnego cp/rsync.
 SRC=~/englearn
 DST=/var/www/html/englearn
 
