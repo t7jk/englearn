@@ -14,39 +14,63 @@
   <div id="screen-menu" class="screen active">
     <div class="container">
       <h1>EngLearn</h1>
-      <div class="menu-actions">
-        <button class="btn btn-primary" id="btn-goto-users">Users</button>
-        <button class="btn btn-outline" id="btn-profile">Profile</button>
+      <div class="menu-actions hidden" id="auth-bar-guest">
+        <button type="button" class="btn btn-primary" id="btn-open-register">Register</button>
+        <button type="button" class="btn btn-outline" id="btn-open-login">Login</button>
+      </div>
+      <div class="menu-actions hidden" id="auth-bar-user">
+        <button type="button" class="btn btn-primary" id="btn-profile">Profile</button>
+        <button type="button" class="btn btn-outline" id="btn-logout">Log out</button>
       </div>
       <hr/>
       <div id="lessons-list" class="lessons-list">
-        <p class="hint">Select a user to see progress.</p>
+        <p class="hint">Loading…</p>
       </div>
     </div>
   </div>
 
-  <!-- SCREEN: USERS -->
-  <div id="screen-users" class="screen">
+  <!-- SCREEN: REGISTER -->
+  <div id="screen-register" class="screen">
     <div class="container">
-      <h1>Users</h1>
-      <button class="btn btn-outline btn-back-users" id="btn-users-back">← Back</button>
+      <h1>Register</h1>
+      <button type="button" class="btn btn-outline btn-back-auth" id="btn-register-back">← Back</button>
       <hr/>
-      <label class="field-label">Select user</label>
-      <select id="user-select">
-        <option value="">-- select --</option>
-      </select>
-      <hr/>
-      <label class="field-label">New user</label>
-      <div class="user-add-row">
-        <input type="text" id="new-user-input" placeholder="Name" maxlength="50"/>
-        <button class="btn btn-primary" id="btn-add-user">Add</button>
+      <label class="field-label" for="register-name">Username</label>
+      <input type="text" id="register-name" class="auth-input" placeholder="Username" maxlength="50" autocomplete="username"/>
+      <p class="field-label">Choose a 4-digit PIN (tap one digit per column)</p>
+      <div id="register-pin-grid" class="pin-grid" aria-label="PIN entry"></div>
+      <p id="register-pin-preview" class="pin-preview" aria-live="polite"></p>
+      <div class="auth-actions">
+        <button type="button" class="btn btn-outline" id="btn-register-pin-clear">Clear PIN</button>
+        <button type="button" class="btn btn-primary" id="btn-register-submit">Create account</button>
       </div>
-      <div class="user-del-row">
-        <button class="btn btn-danger" id="btn-delete-user">Delete selected</button>
-      </div>
+      <p id="register-error" class="auth-error hidden" role="alert"></p>
+    </div>
+  </div>
+
+  <!-- SCREEN: LOGIN -->
+  <div id="screen-login" class="screen">
+    <div class="container">
+      <h1>Login</h1>
+      <button type="button" class="btn btn-outline btn-back-auth" id="btn-login-back">← Back</button>
       <hr/>
-      <div class="user-del-row">
-        <button class="btn btn-outline" id="btn-logout">Log out</button>
+      <div id="login-step-name">
+        <label class="field-label" for="login-name">Username</label>
+        <input type="text" id="login-name" class="auth-input" placeholder="Username" maxlength="50" autocomplete="username"/>
+        <button type="button" class="btn btn-primary btn-full auth-next" id="btn-login-next">Next →</button>
+        <p id="login-error-step1" class="auth-error hidden" role="alert"></p>
+      </div>
+      <div id="login-step-pin" class="hidden">
+        <p class="field-label">PIN for <strong id="login-name-display"></strong></p>
+        <p class="hint pin-hint">Tap one digit in each column.</p>
+        <div id="login-pin-grid" class="pin-grid" aria-label="PIN entry"></div>
+        <p id="login-pin-preview" class="pin-preview" aria-live="polite"></p>
+        <div class="auth-actions">
+          <button type="button" class="btn btn-outline" id="btn-login-pin-clear">Clear PIN</button>
+          <button type="button" class="btn btn-outline" id="btn-login-step-back">← Change user</button>
+          <button type="button" class="btn btn-primary" id="btn-login-submit">Log in</button>
+        </div>
+        <p id="login-error-step2" class="auth-error hidden" role="alert"></p>
       </div>
     </div>
   </div>
@@ -55,7 +79,7 @@
   <div id="screen-lesson" class="screen">
     <div class="container">
       <div class="lesson-header">
-        <button class="btn btn-sm btn-outline" id="btn-back">← Menu</button>
+        <button type="button" class="btn btn-sm btn-outline" id="btn-back">← Menu</button>
         <span id="lesson-title-bar"></span>
         <span id="lesson-progress"></span>
       </div>
@@ -63,26 +87,26 @@
 
       <div id="theory-view" class="hidden">
         <div id="theory-text" class="theory-text"></div>
-        <button class="btn btn-primary btn-full" id="btn-theory-next">Dalej →</button>
+        <button type="button" class="btn btn-primary btn-full" id="btn-theory-next">Dalej →</button>
       </div>
 
       <div id="examples-view" class="hidden">
         <div id="examples-list" class="examples-list"></div>
-        <button class="btn btn-primary btn-full" id="btn-examples-next">Dalej →</button>
+        <button type="button" class="btn btn-primary btn-full" id="btn-examples-next">Dalej →</button>
       </div>
 
       <div id="question-area">
         <div id="question-text" class="question-text"></div>
         <div id="answers-grid" class="answers-grid"></div>
         <div id="feedback" class="feedback hidden"></div>
-        <button id="btn-next" class="btn btn-primary btn-next hidden">Next question →</button>
+        <button type="button" id="btn-next" class="btn btn-primary btn-next hidden">Next question →</button>
       </div>
 
       <div id="lesson-done" class="lesson-done hidden">
         <div class="done-icon">✓</div>
         <h2>Well done! Lesson complete!</h2>
         <p>All questions mastered.</p>
-        <button class="btn btn-primary" id="btn-done-back">Back to menu</button>
+        <button type="button" class="btn btn-primary" id="btn-done-back">Back to menu</button>
       </div>
     </div>
   </div>
@@ -92,7 +116,7 @@
 <!-- MODAL: PROFILE -->
 <div id="modal-profile" class="modal hidden">
   <div class="modal-box">
-    <button class="modal-close" id="btn-close-profile">✕</button>
+    <button type="button" class="modal-close" id="btn-close-profile">✕</button>
     <h2 id="profile-name"></h2>
     <p id="profile-points" class="profile-points"></p>
     <table id="profile-table" class="profile-table">

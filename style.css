@@ -60,10 +60,10 @@ hr { border: none; border-top: 1px solid #000; margin: 1rem 0; }
 .menu-actions { display: flex; gap: 0.6rem; margin-bottom: 1rem; }
 .menu-actions .btn { flex: 1; font-size: 1.1rem; padding: 0.7rem; }
 
-/* USERS SCREEN */
-.btn-back-users { margin-bottom: 0.5rem; }
+/* AUTH SCREENS */
+.btn-back-auth { margin-bottom: 0.5rem; }
 .field-label { display: block; font-weight: bold; margin-bottom: 0.4rem; font-size: 0.95rem; }
-#user-select {
+.auth-input {
   display: block;
   width: 100%;
   border: 2px solid #000;
@@ -72,21 +72,63 @@ hr { border: none; border-top: 1px solid #000; margin: 1rem 0; }
   font-family: Georgia, serif;
   background: #fff;
   color: #000;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
-.user-add-row { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
-.user-add-row input {
-  flex: 1;
-  border: 2px solid #000;
+.auth-input:focus { outline: 3px solid #000; }
+.auth-next { margin-top: 0.5rem; }
+.auth-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.auth-actions .btn { flex: 1; min-width: 7rem; }
+.auth-error {
+  margin-top: 1rem;
   padding: 0.6rem;
-  font-size: 1rem;
-  font-family: Georgia, serif;
+  border: 2px solid #000;
+  font-size: 0.95rem;
+}
+.pin-hint { margin-bottom: 0.5rem; }
+.pin-preview {
+  text-align: center;
+  font-size: 1.4rem;
+  letter-spacing: 0.4em;
+  margin: 0.8rem 0;
+  font-family: ui-monospace, monospace;
+}
+
+/* PIN GRID (4×10) */
+.pin-grid-cols {
+  display: flex;
+  gap: 0.35rem;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+.pin-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 0;
+  max-width: 3.2rem;
+}
+.pin-key {
+  border: 2px solid #000;
   background: #fff;
   color: #000;
+  font-family: Georgia, serif;
+  font-size: 1rem;
+  padding: 0.45rem 0;
+  cursor: pointer;
+  width: 100%;
 }
-.user-add-row input:focus { outline: 3px solid #000; }
-.user-del-row { margin-top: 0.5rem; }
-.user-del-row .btn { width: 100%; padding: 0.7rem; }
+.pin-key.selected {
+  box-shadow: inset 0 0 0 3px #000;
+  font-weight: bold;
+}
+.pin-key:not(:disabled):hover { box-shadow: 0 0 0 2px #000; }
+.pin-key:not(:disabled):active { box-shadow: 0 0 0 3px #000; }
 
 /* LESSONS LIST */
 .lessons-list { display: flex; flex-direction: column; gap: 0.6rem; }
