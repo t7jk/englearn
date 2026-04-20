@@ -128,6 +128,22 @@ if ($action === 'delete_user' && $method === 'POST') {
     jsonResponse(['success' => true]);
 }
 
+if ($action === 'lesson_complete' && $method === 'POST') {
+    $body = json_decode(file_get_contents('php://input'), true);
+    $user = $body['user'] ?? '';
+    $lessonTitle = $body['lesson'] ?? '';
+    $timeMs = (int)($body['time_ms'] ?? 0);
+    if (!$user || !$lessonTitle) jsonResponse(['error' => 'Missing params'], 400);
+    $profile = readProfile($user);
+    if (!isset($profile['lessons'][$lessonTitle])) {
+        $profile['lessons'][$lessonTitle] = ['learned' => [], 'points' => 0];
+    }
+    $profile['lessons'][$lessonTitle]['time_ms'] = ($profile['lessons'][$lessonTitle]['time_ms'] ?? 0) + $timeMs;
+    $profile['total_time_ms'] = ($profile['total_time_ms'] ?? 0) + $timeMs;
+    saveProfile($profile);
+    jsonResponse(['success' => true]);
+}
+
 if ($action === 'reset_lesson' && $method === 'POST') {
     $body = json_decode(file_get_contents('php://input'), true);
     $user = $body['user'] ?? '';
@@ -136,8 +152,10 @@ if ($action === 'reset_lesson' && $method === 'POST') {
     $profile = readProfile($user);
     if (isset($profile['lessons'][$lessonTitle])) {
         $pts = $profile['lessons'][$lessonTitle]['points'] ?? 0;
+        $timeMs = $profile['lessons'][$lessonTitle]['time_ms'] ?? 0;
         $profile['points'] = max(0, ($profile['points'] ?? 0) - $pts);
-        $profile['lessons'][$lessonTitle] = ['learned' => [], 'points' => 0];
+        $profile['total_time_ms'] = max(0, ($profile['total_time_ms'] ?? 0) - $timeMs);
+        $profile['lessons'][$lessonTitle] = ['learned' => [], 'points' => 0, 'time_ms' => 0];
         saveProfile($profile);
     }
     jsonResponse(['success' => true]);
@@ -151,9 +169,10 @@ if ($action === 'profile' && $method === 'GET') {
     $stats = [];
     foreach ($lessons as $l) {
         $learned = count($profile['lessons'][$l['title']]['learned'] ?? []);
-        $stats[] = ['title' => $l['title'], 'total' => $l['total'], 'learned' => $learned];
+        $timeMs = $profile['lessons'][$l['title']]['time_ms'] ?? 0;
+        $stats[] = ['title' => $l['title'], 'total' => $l['total'], 'learned' => $learned, 'time_ms' => $timeMs];
     }
-    jsonResponse(['name' => $profile['name'], 'points' => $profile['points'] ?? 0, 'stats' => $stats]);
+    jsonResponse(['name' => $profile['name'], 'points' => $profile['points'] ?? 0, 'total_time_ms' => $profile['total_time_ms'] ?? 0, 'stats' => $stats]);
 }
 
 jsonResponse(['error' => 'Unknown action'], 400);

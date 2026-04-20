@@ -7,6 +7,7 @@ let lessonIndex = 0;
 let lessonTotal = 0;
 let lessonLearned = 0;
 let answered = false;
+let lessonStartTime = 0;
 
 // ---- DOM refs ----
 const screenMenu   = document.getElementById('screen-menu');
@@ -167,6 +168,7 @@ async function startLesson(file, title) {
   lessonTotal = data.total;
   lessonLearned = data.learned;
 
+  lessonStartTime = Date.now();
   lessonTitleBar.textContent = title;
   questionArea.classList.remove('hidden');
   lessonDone.classList.add('hidden');
@@ -255,7 +257,14 @@ btnNext.addEventListener('click', () => {
   showQuestion();
 });
 
-function showDone() {
+function formatTime(ms) {
+  const s = Math.floor(ms / 1000);
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+async function showDone() {
+  const elapsed = Date.now() - lessonStartTime;
+  await api('lesson_complete', {}, { user: currentUser, lesson: currentLesson.title, time_ms: elapsed });
   questionArea.classList.add('hidden');
   lessonDone.classList.remove('hidden');
   progressBar.style.width = '100%';
@@ -276,13 +285,13 @@ document.getElementById('btn-done-back').addEventListener('click', () => {
 document.getElementById('btn-profile').addEventListener('click', async () => {
   const data = await api('profile', { user: currentUser });
   document.getElementById('profile-name').textContent = data.name;
-  document.getElementById('profile-points').textContent = `Total points: ${data.points}`;
+  document.getElementById('profile-points').textContent = `Total points: ${data.points} | Total time: ${formatTime(data.total_time_ms || 0)}`;
   const tbody = document.querySelector('#profile-table tbody');
   tbody.innerHTML = '';
   data.stats.forEach(s => {
     const pct = s.total > 0 ? Math.round((s.learned / s.total) * 100) : 0;
     const tr = document.createElement('tr');
-    tr.innerHTML = `<td>${s.title}</td><td>${s.total}</td><td>${s.learned}</td><td>${pct}%</td>`;
+    tr.innerHTML = `<td>${s.title}</td><td>${s.total}</td><td>${s.learned}</td><td>${pct}%</td><td>${formatTime(s.time_ms || 0)}</td>`;
     tbody.appendChild(tr);
   });
   modalProfile.classList.remove('hidden');

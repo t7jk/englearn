@@ -86,7 +86,7 @@
     <h2 id="profile-name"></h2>
     <p id="profile-points" class="profile-points"></p>
     <table id="profile-table" class="profile-table">
-      <thead><tr><th>Lesson</th><th>Total</th><th>Learned</th><th>%</th></tr></thead>
+      <thead><tr><th>Lesson</th><th>Total</th><th>Learned</th><th>%</th><th>Time</th></tr></thead>
       <tbody></tbody>
     </table>
   </div>
