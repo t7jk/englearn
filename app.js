@@ -174,6 +174,8 @@ async function startLesson(file, title) {
   showQuestion();
 }
 
+let keyHandler = null;
+
 function showQuestion() {
   if (lessonIndex >= lessonQuestions.length) { showDone(); return; }
   const q = lessonQuestions[lessonIndex];
@@ -198,11 +200,21 @@ function showQuestion() {
     btn.addEventListener('click', () => handleAnswer(idx === q.correct, idx, q));
     answersGrid.appendChild(btn);
   });
+
+  if (keyHandler) document.removeEventListener('keydown', keyHandler);
+  keyHandler = (e) => {
+    const n = { '1': 0, '2': 1, '3': 2 }[e.key];
+    if (n === undefined) return;
+    const btns = answersGrid.querySelectorAll('.answer-btn');
+    if (btns[n]) btns[n].click();
+  };
+  document.addEventListener('keydown', keyHandler);
 }
 
 async function handleAnswer(correct, chosenIdx, q) {
   if (answered) return;
   answered = true;
+  if (keyHandler) { document.removeEventListener('keydown', keyHandler); keyHandler = null; }
 
   const buttons = answersGrid.querySelectorAll('.answer-btn');
   buttons.forEach(b => b.disabled = true);
