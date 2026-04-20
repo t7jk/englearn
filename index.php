@@ -111,19 +111,21 @@
     </div>
   </div>
 
-</div>
-
-<!-- MODAL: PROFILE -->
-<div id="modal-profile" class="modal hidden">
-  <div class="modal-box">
-    <button type="button" class="modal-close" id="btn-close-profile">✕</button>
-    <h2 id="profile-name"></h2>
-    <p id="profile-points" class="profile-points"></p>
-    <table id="profile-table" class="profile-table">
-      <thead><tr><th>Lesson</th><th>Total</th><th>Learned</th><th>%</th><th>Time</th></tr></thead>
-      <tbody></tbody>
-    </table>
+  <!-- SCREEN: PROFILE -->
+  <div id="screen-profile" class="screen">
+    <div class="container">
+      <h1>Profile</h1>
+      <button type="button" class="btn btn-outline btn-back-auth" id="btn-profile-back">← Back</button>
+      <hr/>
+      <h2 id="profile-name"></h2>
+      <p id="profile-points" class="profile-points"></p>
+      <table id="profile-table" class="profile-table">
+        <thead><tr><th>Lesson</th><th>Total</th><th>Learned</th><th>%</th><th>Time</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
   </div>
+
 </div>
 
 <script src="app.js"></script>

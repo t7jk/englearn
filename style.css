@@ -253,40 +253,12 @@ hr { border: none; border-top: 1px solid #000; margin: 1rem 0; }
 .lesson-done p { margin-bottom: 1.2rem; }
 
 /* MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(255,255,255,0.9);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 100;
-  padding: 1rem;
+#screen-profile h2 {
+  font-size: 1.3rem;
+  margin-bottom: 0.3rem;
+  text-align: left;
+  font-weight: bold;
 }
-.modal.hidden { display: none; }
-
-.modal-box {
-  background: #fff;
-  border: 3px solid #000;
-  padding: 1.5rem;
-  width: 100%;
-  max-width: 500px;
-  position: relative;
-  max-height: 85vh;
-  overflow-y: auto;
-}
-.modal-close {
-  position: absolute;
-  top: 0.8rem;
-  right: 0.8rem;
-  background: none;
-  border: 2px solid #000;
-  color: #000;
-  font-size: 1rem;
-  cursor: pointer;
-  padding: 0.2rem 0.5rem;
-}
-.modal-box h2 { font-size: 1.3rem; margin-bottom: 0.3rem; text-align: left; }
 .profile-points { margin-bottom: 1rem; font-size: 0.9rem; }
 
 .profile-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }

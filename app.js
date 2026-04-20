@@ -22,6 +22,7 @@ const screenMenu = document.getElementById('screen-menu');
 const screenRegister = document.getElementById('screen-register');
 const screenLogin = document.getElementById('screen-login');
 const screenLesson = document.getElementById('screen-lesson');
+const screenProfile = document.getElementById('screen-profile');
 
 const authBarGuest = document.getElementById('auth-bar-guest');
 const authBarUser = document.getElementById('auth-bar-user');
@@ -40,8 +41,6 @@ const theoryView = document.getElementById('theory-view');
 const examplesView = document.getElementById('examples-view');
 const theoryText = document.getElementById('theory-text');
 const examplesList = document.getElementById('examples-list');
-const modalProfile = document.getElementById('modal-profile');
-
 const registerPinGrid = document.getElementById('register-pin-grid');
 const registerPinPreview = document.getElementById('register-pin-preview');
 const loginPinGrid = document.getElementById('login-pin-grid');
@@ -121,6 +120,7 @@ function showScreen(name) {
   screenRegister.classList.toggle('active', name === 'register');
   screenLogin.classList.toggle('active', name === 'login');
   screenLesson.classList.toggle('active', name === 'lesson');
+  screenProfile.classList.toggle('active', name === 'profile');
 }
 
 function updateAuthChrome() {
@@ -591,7 +591,7 @@ document.getElementById('btn-done-back').addEventListener('click', () => {
   loadLessons();
 });
 
-// ---- Profile modal ----
+// ---- Profile screen ----
 document.getElementById('btn-profile').addEventListener('click', async () => {
   const data = await api('profile');
   if (data.error) {
@@ -609,15 +609,11 @@ document.getElementById('btn-profile').addEventListener('click', async () => {
     tr.innerHTML = `<td>${s.title}</td><td>${s.total}</td><td>${s.learned}</td><td>${pct}%</td><td>${formatTime(s.time_ms || 0)}</td>`;
     tbody.appendChild(tr);
   });
-  modalProfile.classList.remove('hidden');
+  showScreen('profile');
 });
 
-document.getElementById('btn-close-profile').addEventListener('click', () => {
-  modalProfile.classList.add('hidden');
-});
-
-modalProfile.addEventListener('click', (e) => {
-  if (e.target === modalProfile) modalProfile.classList.add('hidden');
+document.getElementById('btn-profile-back').addEventListener('click', () => {
+  showScreen('menu');
 });
 
 // ---- Init ----
